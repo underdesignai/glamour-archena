@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glamour Peluquería Unisex | Tu Salón en Archena</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts & FontAwesome Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#F3E5AB',
+              400: '#E5C158',
+              500: '#D4AF37',
+              600: '#AA820A',
+              700: '#856404'
+            },
+            dark: {
+              900: '#0E0E10',
+              800: '#17171C',
+              700: '#23232A'
+            },
+            nude: {
+              100: '#FAF7F2',
+              200: '#F4ECE1',
+              300: '#E8DBC5'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Glassmorphism & Luxury Gradients */
+    .glass-nav {
+      background: rgba(14, 14, 16, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(110deg, #FFF0BA 0%, #D4AF37 35%, #FFF5D6 50%, #AA820A 75%, #F3E5AB 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 6s linear infinite;
+    }
+    @keyframes goldShimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Floating & Ambient Keyframe Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+    @keyframes orbPulse {
+      0%, 100% { opacity: 0.35; transform: scale(1) translate(0, 0); }
+      50% { opacity: 0.65; transform: scale(1.12) translate(15px, -15px); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: floatReverse 6s ease-in-out 1.5s infinite;
+    }
+    .animate-orb {
+      animation: orbPulse 9s ease-in-out infinite;
+    }
+
+    /* Scroll Reveal Animations (60fps GPU-accelerated) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px) scale(0.985);
+      transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition:
+        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(36px) scale(0.96);
+      transition:
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible,
+    .reveal-left.is-visible,
+    .reveal-right.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* Luxury Button Light Sweep */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      transition: left 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+      pointer-events: none;
+    }
+    .btn-shine:hover::after {
+      left: 130%;
+    }
+
+    /* Interactive Card Spotlight & Elevation */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease, box-shadow 0.45s ease;
+    }
+    .spotlight-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.14);
+    }
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(212, 175, 55, 0.11),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Gallery Image Zoom & Caption Reveal */
+    .gallery-card img {
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    }
+    .gallery-card:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.05);
+    }
+    .gallery-caption {
+      transform: translateY(6px);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-card:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* Smooth Modal Transition */
+    #booking-modal {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #booking-modal.modal-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #booking-modal-panel {
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #booking-modal.modal-open #booking-modal-panel {
+      transform: translateY(0) scale(1);
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-gray-200 font-sans antialiased selection:bg-gold-500 selection:text-black overflow-x-hidden">
+<!-- SCROLL PROGRESS BAR -->
+<div class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-gold-300 via-gold-500 to-amber-600 z-[60] w-0 transition-[width] duration-100 ease-out shadow-[0_0_10px_#D4AF37]" id="scroll-progress"></div>
+
+<!-- TOP ANNOUNCEMENT BAR -->
+<div class="bg-gradient-to-r from-dark-800 via-gold-700/30 to-dark-800 border-b border-gold-500/20 py-2 px-4 text-xs sm:text-sm text-center font-medium">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="hidden sm:flex items-center gap-4 text-gray-400">
+<span><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i> Av. Mario Spreáfico, 25, Archena</span>
+<span><i class="fa-regular fa-clock text-gold-500 mr-1.5"></i> Mar - Sáb: 9:30 - 20:00</span>
+</div>
+<div class="mx-auto sm:mx-0 flex items-center gap-3">
+<span class="text-gold-300 font-semibold tracking-wide"><i class="fa-solid fa-sparkles text-gold-500 mr-1 animate-spin" style="animation-duration: 4s;"></i> ¡Reserva tu cita hoy sin esperas!</span>
+<a class="text-white hover:text-gold-400 transition font-bold underline underline-offset-2 flex items-center gap-1" href="tel:+34968688199">
+<i class="fa-solid fa-phone text-xs"></i> 968 688 199
+        </a>
+</div>
+</div>
+</div>
+
+<!-- 1. HEADER & NAVBAR -->
+<header class="sticky top-0 z-50 glass-nav border-b border-white/10 transition-all duration-500" id="main-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between transition-all duration-500" id="header-container">
+<!-- Brand Logo -->
+<a class="flex flex-col group" href="#">
+<div class="flex items-center gap-2">
+<span class="font-serif text-2xl sm:text-3xl font-bold tracking-wider text-white group-hover:text-gold-400 transition-colors duration-300">
+            GLAMOUR
+          </span>
+<span class="h-2 w-2 rounded-full bg-gold-500 animate-pulse"></span>
+</div>
+<span class="text-[10px] tracking-[0.3em] uppercase text-gold-400/80 font-medium">Peluquería Unisex</span>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+<a class="hover:text-gold-400 transition-colors py-1 relative after:w-0 hover:after:w-full after:h-0.5 after:bg-gold-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300" href="#inicio">Inicio</a>
+<a class="hover:text-gold-400 transition-colors py-1 relative after:w-0 hover:after:w-full after:h-0.5 after:bg-gold-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300" href="#servicios">Servicios &amp; Tarifas</a>
+<a class="hover:text-gold-400 transition-colors py-1 relative after:w-0 hover:after:w-full after:h-0.5 after:bg-gold-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300" href="#galeria">Antes y Después</a>
+<a class="hover:text-gold-400 transition-colors py-1 relative after:w-0 hover:after:w-full after:h-0.5 after:bg-gold-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300" href="#opiniones">Testimonios</a>
+<a class="hover:text-gold-400 transition-colors py-1 relative after:w-0 hover:after:w-full after:h-0.5 after:bg-gold-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300" href="#contacto">Contacto</a>
+</nav>
+<!-- CTA Action Button -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-full border border-gold-500/40 text-gold-400 hover:bg-gold-500/15 hover:scale-105 text-xs font-semibold tracking-wide transition-all duration-300" href="tel:+34968688199">
+<i class="fa-solid fa-phone"></i>
+<span>Llamar</span>
+</a>
+<button class="btn-shine relative inline-flex items-center justify-center p-0.5 overflow-hidden rounded-full font-semibold group focus:outline-none focus:ring-2 focus:ring-gold-500 hover:scale-105 transition-transform duration-300" onclick="toggleBookingModal(true)">
+<span class="w-full h-full bg-gradient-to-br from-gold-400 via-gold-500 to-amber-600 group-hover:from-gold-300 group-hover:to-gold-600 absolute"></span>
+<span class="relative px-5 py-2.5 transition-all ease-out bg-dark-900 rounded-full group-hover:bg-opacity-0 text-white group-hover:text-black text-xs sm:text-sm font-bold flex items-center gap-2">
+<i class="fa-regular fa-calendar-check text-gold-400 group-hover:text-black transition-colors"></i>
+<span>Pedir Cita</span>
+</span>
+</button>
+<!-- Mobile Menu Toggle Button -->
+<button class="md:hidden text-gray-400 hover:text-white p-2 text-xl focus:outline-none" id="mobile-menu-btn" onclick="toggleMobileNav()">
+<i class="fa-solid fa-bars transition-transform duration-300" id="menu-icon"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer Menu -->
+<div class="hidden md:hidden bg-dark-800/98 border-b border-gold-500/20 px-6 py-5 transition-all" id="mobile-menu">
+<div class="flex flex-col gap-4 text-base font-medium">
+<a class="text-white hover:text-gold-400" href="#inicio" onclick="toggleMobileNav()">Inicio</a>
+<a class="text-gray-300 hover:text-gold-400" href="#servicios" onclick="toggleMobileNav()">Servicios &amp; Precios</a>
+<a class="text-gray-300 hover:text-gold-400" href="#galeria" onclick="toggleMobileNav()">Galería de Trabajos</a>
+<a class="text-gray-300 hover:text-gold-400" href="#opiniones" onclick="toggleMobileNav()">Opiniones de Clientes</a>
+<a class="text-gray-300 hover:text-gold-400" href="#contacto" onclick="toggleMobileNav()">Horarios y Ubicación</a>
+<div class="pt-3 border-t border-white/10 flex flex-col gap-2.5">
+<a class="w-full py-2.5 bg-dark-700 text-center rounded-lg text-gold-400 font-bold flex items-center justify-center gap-2" href="tel:+34968688199">
+<i class="fa-solid fa-phone"></i> +34 968 688 199
+          </a>
+<button class="w-full py-2.5 bg-gradient-to-r from-gold-500 to-amber-600 text-black font-bold rounded-lg text-center shadow-lg shadow-gold-500/20" onclick="toggleMobileNav(); toggleBookingModal(true);">
+            Reservar Cita Online / WhatsApp
+          </button>
+</div>
+</div>
+</div>
+</header>
+
+<!-- 2. HERO SECTION -->
+<section class="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-dark-900 py-16 lg:py-24" id="inicio">
+<!-- Ambient glow & animated decorative elements -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-gold-500/15 via-transparent to-transparent pointer-events-none"></div>
+<div class="absolute -top-40 -left-40 w-96 h-96 bg-gold-500/15 rounded-full blur-3xl pointer-events-none animate-orb"></div>
+<div class="absolute bottom-10 right-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none animate-orb" style="animation-delay: -4s;"></div>
+<div class="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-dark-900 to-transparent pointer-events-none"></div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Copy & Value Proposition -->
+<div class="lg:col-span-7 text-center lg:text-left">
+<!-- Badge -->
+<div class="reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs tracking-wider uppercase font-semibold mb-6" style="--delay: 50ms;">
+<span class="w-2 h-2 rounded-full bg-gold-500 animate-ping"></span>
+            Salón de Belleza &amp; Estilo en Archena
+          </div>
+<h1 class="reveal font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15] mb-6" style="--delay: 150ms;">
+            Tu estilo, tu esencia en el <span class="gold-gradient-text italic font-normal">corazón de Archena</span>
+</h1>
+<p class="reveal text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8" style="--delay: 250ms;">
+            Expertos en peluquería unisex, cortes vanguardistas, balayage y colorimetría avanzada, tratamientos reconstructores y recogidos exclusivos para bodas y eventos especiales.
+          </p>
+<!-- Primary CTAs -->
+<div class="reveal flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10" style="--delay: 350ms;">
+<a class="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-amber-600 text-black font-bold text-sm sm:text-base tracking-wide hover:brightness-110 shadow-lg shadow-gold-500/25 transition-all duration-300 transform hover:-translate-y-1" href="tel:+34968688199">
+<i class="fa-solid fa-phone-volume text-lg"></i>
+<span>Llamar para Reservar</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-dark-800/90 hover:bg-dark-700 text-white font-semibold text-sm sm:text-base border border-white/10 hover:border-gold-500/50 transition-all duration-300 transform hover:-translate-y-1 group" href="#servicios">
+<span>Ver Servicios y Precios</span>
+<i class="fa-solid fa-arrow-down text-xs text-gold-400 group-hover:translate-y-1 transition-transform"></i>
+</a>
+</div>
+<!-- Quick Trust Badges with Animated Counters -->
+<div class="reveal pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left" style="--delay: 450ms;">
+<div>
+<p class="font-serif text-2xl sm:text-3xl font-bold text-gold-400"><span data-counter="12" data-prefix="+">+12</span></p>
+<p class="text-xs text-gray-400 font-medium">Años de maestría</p>
+</div>
+<div>
+<p class="font-serif text-2xl sm:text-3xl font-bold text-gold-400"><span data-counter="4.9" data-decimals="1" data-suffix=" ★">4.9 ★</span></p>
+<p class="text-xs text-gray-400 font-medium">En Google Maps</p>
+</div>
+<div>
+<p class="font-serif text-2xl sm:text-3xl font-bold text-gold-400"><span data-counter="100" data-suffix="%">100%</span></p>
+<p class="text-xs text-gray-400 font-medium">Peluquería Unisex</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Hero Card & Showcase -->
+<div class="lg:col-span-5 relative reveal-right" style="--delay: 250ms;">
+<div class="relative mx-auto max-w-md lg:max-w-none">
+<!-- Decorative outline -->
+<div class="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-gold-600 to-gold-400/20 opacity-40 blur-lg animate-pulse"></div>
+<div class="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-800 shadow-2xl">
+<div class="h-96 sm:h-[480px] w-full relative overflow-hidden group">
+<img alt="Glamour Peluquería Unisex Archena" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-1000 ease-out brightness-95" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-black/20"></div>
+<!-- Floating overlay card 1: Location -->
+<div class="animate-float absolute top-4 left-4 glass-nav px-3.5 py-2 rounded-xl border border-white/15 shadow-xl flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-sm">
+<i class="fa-solid fa-gem"></i>
+</div>
+<div>
+<p class="text-[11px] font-semibold text-white">Trato personalizado</p>
+<p class="text-[10px] text-gold-300">Citas sin esperas</p>
+</div>
+</div>
+<!-- Floating overlay card 2: Quick Booking -->
+<div class="animate-float-delayed absolute bottom-4 inset-x-4 glass-nav p-4 rounded-xl border border-white/15 shadow-xl flex items-center justify-between">
+<div>
+<p class="text-xs text-gray-400 font-medium">¿Tienes un evento cerca?</p>
+<p class="text-sm font-bold text-white">Novias, peinados y color</p>
+</div>
+<button class="btn-shine px-4 py-2 bg-gold-500 hover:bg-gold-400 text-black text-xs font-bold rounded-lg transition transform hover:scale-105" onclick="toggleBookingModal(true)">
+                    Cita Online
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3. SERVICES & TRANSPARENT PRICING SECTION -->
+<section class="py-20 lg:py-28 bg-dark-800 relative border-t border-b border-white/5" id="servicios">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Header -->
+<div class="reveal text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-2">Transparencia y Calidad</span>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Servicios Profesionales &amp; Tarifas Orientativas
+        </h2>
+<p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+          Trabajamos con primeras marcas y técnicas de vanguardia. Te asesoramos sin compromiso para realzar tu belleza y salud capilar.
+        </p>
+</div>
+<!-- Categories Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Cortes Unisex -->
+<div class="reveal spotlight-card bg-dark-900/90 rounded-2xl p-6 border border-white/10 hover:border-gold-500/40 group flex flex-col justify-between shadow-lg" style="--delay: 0ms;">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+<i class="fa-solid fa-scissors"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white mb-2">Cortes Unisex</h3>
+<p class="text-xs text-gray-400 mb-6 leading-relaxed">Asesoría de visagismo, corte adaptado a tu estilo diario, secado y definición.</p>
+<ul class="space-y-3.5 mb-6 text-sm">
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Corte Caballero + Lavado</span>
+<span class="font-bold text-gold-400 text-sm">desde 12€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Corte Señora + Peinado</span>
+<span class="font-bold text-gold-400 text-sm">desde 18€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Corte Infantil</span>
+<span class="font-bold text-gold-400 text-sm">desde 10€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Arreglo de Barba / Perfil</span>
+<span class="font-bold text-gold-400 text-sm">desde 6€</span>
+</li>
+</ul>
+</div>
+<button class="relative z-10 w-full py-2.5 rounded-lg border border-gold-500/30 text-gold-300 hover:bg-gold-500 hover:text-black font-semibold text-xs tracking-wider uppercase transition-all duration-300" onclick="openServiceModal('Cortes Unisex')">
+            Reservar Corte
+          </button>
+</div>
+<!-- Card 2: Color y Mechas -->
+<div class="reveal spotlight-card bg-dark-900/90 rounded-2xl p-6 border border-gold-500/30 ring-1 ring-gold-500/20 relative flex flex-col justify-between shadow-xl group" style="--delay: 120ms;">
+<div class="absolute -top-3 right-6 bg-gradient-to-r from-gold-500 to-amber-600 text-black text-[10px] font-black uppercase tracking-wider py-1 px-3 rounded-full shadow z-20">
+            Más Popular
+          </div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white mb-2">Color &amp; Balayage</h3>
+<p class="text-xs text-gray-400 mb-6 leading-relaxed">Coloración respetuosa sin amoníaco, degradados luminosos y matices de brillo.</p>
+<ul class="space-y-3.5 mb-6 text-sm">
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Tinte Raíz &amp; Brillo</span>
+<span class="font-bold text-gold-400 text-sm">desde 24€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Mechas Babylights</span>
+<span class="font-bold text-gold-400 text-sm">desde 38€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Técnica Balayage Total</span>
+<span class="font-bold text-gold-400 text-sm">desde 55€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Baño de Brillo / Matiz</span>
+<span class="font-bold text-gold-400 text-sm">desde 16€</span>
+</li>
+</ul>
+</div>
+<button class="btn-shine relative z-10 w-full py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-black font-bold text-xs tracking-wider uppercase transition-all duration-300 shadow-md" onclick="openServiceModal('Color y Mechas')">
+            Pedir Asesoría Color
+          </button>
+</div>
+<!-- Card 3: Tratamientos Capilares -->
+<div class="reveal spotlight-card bg-dark-900/90 rounded-2xl p-6 border border-white/10 hover:border-gold-500/40 group flex flex-col justify-between shadow-lg" style="--delay: 240ms;">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+<i class="fa-solid fa-spa"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white mb-2">Tratamientos</h3>
+<p class="text-xs text-gray-400 mb-6 leading-relaxed">Regeneración intensiva para devolver nutrición, fuerza y elasticidad a tu melena.</p>
+<ul class="space-y-3.5 mb-6 text-sm">
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Bótox Capilar Intensivo</span>
+<span class="font-bold text-gold-400 text-sm">desde 28€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Alisado Keratina Orgánica</span>
+<span class="font-bold text-gold-400 text-sm">desde 75€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Hidratación Ácido Hialurónico</span>
+<span class="font-bold text-gold-400 text-sm">desde 22€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Anticaída &amp; Cuero Cabelludo</span>
+<span class="font-bold text-gold-400 text-sm">desde 19€</span>
+</li>
+</ul>
+</div>
+<button class="relative z-10 w-full py-2.5 rounded-lg border border-gold-500/30 text-gold-300 hover:bg-gold-500 hover:text-black font-semibold text-xs tracking-wider uppercase transition-all duration-300" onclick="openServiceModal('Tratamientos Capilares')">
+            Reservar Tratamiento
+          </button>
+</div>
+<!-- Card 4: Peinados y Eventos -->
+<div class="reveal spotlight-card bg-dark-900/90 rounded-2xl p-6 border border-white/10 hover:border-gold-500/40 group flex flex-col justify-between shadow-lg" style="--delay: 360ms;">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+<i class="fa-solid fa-crown"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white mb-2">Novias &amp; Eventos</h3>
+<p class="text-xs text-gray-400 mb-6 leading-relaxed">Diseños exclusivos para novias, madrinas, comuniones y fiestas inolvidables.</p>
+<ul class="space-y-3.5 mb-6 text-sm">
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Peinado Ondas / Plancha</span>
+<span class="font-bold text-gold-400 text-sm">desde 16€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Semirecogido de Fiesta</span>
+<span class="font-bold text-gold-400 text-sm">desde 30€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Recogido Alta Costura</span>
+<span class="font-bold text-gold-400 text-sm">desde 45€</span>
+</li>
+<li class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="text-gray-300">Pack Novia Especial (+ prueba)</span>
+<span class="font-bold text-gold-400 text-sm">Consultar</span>
+</li>
+</ul>
+</div>
+<button class="relative z-10 w-full py-2.5 rounded-lg border border-gold-500/30 text-gold-300 hover:bg-gold-500 hover:text-black font-semibold text-xs tracking-wider uppercase transition-all duration-300" onclick="openServiceModal('Novias y Eventos')">
+            Consultar Pack Novia
+          </button>
+</div>
+</div>
+<!-- Pricing notice -->
+<div class="reveal mt-10 p-4 rounded-xl bg-dark-900 border border-white/5 max-w-2xl mx-auto flex items-center gap-3 text-xs text-gray-400" style="--delay: 200ms;">
+<i class="fa-solid fa-circle-info text-gold-400 text-base flex-shrink-0"></i>
+<span>Los precios mostrados son de carácter orientativo y pueden variar según la longitud y volumen de la melena o personalizaciones técnicas.</span>
+</div>
+</div>
+</section>
+
+<!-- 4. GALLERY / ANTES Y DESPUÉS (PRUEBA VISUAL) -->
+<section class="py-20 lg:py-28 bg-dark-900 relative" id="galeria">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-14">
+<div>
+<span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-2">Galería de Resultados Reales</span>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Transformaciones que Enamoran
+          </h2>
+</div>
+<p class="text-gray-400 text-sm max-w-md mt-4 md:mt-0">
+          Una pequeña muestra de cortes, coloraciones y recogidos creados en nuestro salón en Archena.
+        </p>
+</div>
+<!-- Grid of Looks & Before/After -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Item 1: Balayage Rubio Vainilla -->
+<div class="reveal gallery-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-white/10 hover:border-gold-500/40 transition-colors aspect-[4/5]" style="--delay: 0ms;">
+<img alt="Balayage Rubio Luminoso" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&amp;fit=crop&amp;w=800&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900/95 via-dark-900/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-gold-400 border border-gold-500/30">
+            Cambio de Look
+          </div>
+<div class="gallery-caption absolute bottom-5 inset-x-5">
+<h4 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">Balayage Rubio Vainilla</h4>
+<p class="text-xs text-gray-300">Degradado natural con corrección de color y baño gloss de brillo.</p>
+</div>
+</div>
+<!-- Item 2: Recogido Novia / Invitada -->
+<div class="reveal gallery-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-white/10 hover:border-gold-500/40 transition-colors aspect-[4/5]" style="--delay: 100ms;">
+<img alt="Recogido Novia Romántico" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&amp;fit=crop&amp;w=800&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900/95 via-dark-900/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-gold-400 border border-gold-500/30">
+            Peinado para Eventos
+          </div>
+<div class="gallery-caption absolute bottom-5 inset-x-5">
+<h4 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">Recogido Romántico Texturizado</h4>
+<p class="text-xs text-gray-300">Ideal para novias e invitadas. Fijación flexible y durabilidad 24h.</p>
+</div>
+</div>
+<!-- Item 3: Corte Caballero Degradado / Fade -->
+<div class="reveal gallery-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-white/10 hover:border-gold-500/40 transition-colors aspect-[4/5]" style="--delay: 200ms;">
+<img alt="Corte Caballero Modern Fade" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&amp;fit=crop&amp;w=800&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900/95 via-dark-900/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-gold-400 border border-gold-500/30">
+            Peluquería Masculina
+          </div>
+<div class="gallery-caption absolute bottom-5 inset-x-5">
+<h4 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">Skin Fade &amp; Textura Superior</h4>
+<p class="text-xs text-gray-300">Degradado pulido milimétrico y estilización con cera mate.</p>
+</div>
+</div>
+<!-- Item 4: Tratamiento Bótox Reparador -->
+<div class="reveal gallery-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-white/10 hover:border-gold-500/40 transition-colors aspect-[4/5]" style="--delay: 100ms;">
+<img alt="Tratamiento Capilar Bótox" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&amp;fit=crop&amp;w=800&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900/95 via-dark-900/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-gold-400 border border-gold-500/30">
+            Salud Capilar
+          </div>
+<div class="gallery-caption absolute bottom-5 inset-x-5">
+<h4 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">Reconstrucción Capilar Térmica</h4>
+<p class="text-xs text-gray-300">Sellado de cutícula, adiós al encrespamiento y brillo espejo.</p>
+</div>
+</div>
+<!-- Item 5: Cobrizos de Temporada -->
+<div class="reveal gallery-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-white/10 hover:border-gold-500/40 transition-colors aspect-[4/5]" style="--delay: 200ms;">
+<img alt="Tono Cobrizo y Corte Bob" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&amp;fit=crop&amp;w=800&amp;q=85"/>
+<div class="absolute inset-0 bg-gradient-to-t from-dark-900/95 via-dark-900/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-gold-400 border border-gold-500/30">
+            Color Vanguardia
+          </div>
+<div class="gallery-caption absolute bottom-5 inset-x-5">
+<h4 class="font-serif text-xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">Copper Glow &amp; Long Bob</h4>
+<p class="text-xs text-gray-300">Tonalidades cobrizas vivas con corte angular de tendencia.</p>
+</div>
+</div>
+<!-- Item 6: Call to Action Card -->
+<div class="reveal spotlight-card rounded-2xl p-8 bg-gradient-to-br from-dark-800 via-dark-900 to-dark-800 border border-gold-500/30 flex flex-col justify-center items-center text-center relative overflow-hidden group" style="--delay: 300ms;">
+<div class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+<i class="fa-solid fa-camera-retro"></i>
+</div>
+<h4 class="font-serif text-2xl font-bold text-white mb-2">¿Quieres renovar tu imagen?</h4>
+<p class="text-xs text-gray-400 mb-6 max-w-xs">
+            Cuéntanos tu idea o trae tu foto de referencia. Nos encargamos de adaptarla a tus facciones.
+          </p>
+<a class="btn-shine px-6 py-3 bg-gold-500 hover:bg-gold-400 text-black font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg" href="https://wa.me/34968688199?text=Hola,%20quisiera%20pedir%20cita%20en%20Glamour%20Peluquería" target="_blank">
+<i class="fa-brands fa-whatsapp text-sm mr-1"></i> Hablar por WhatsApp
+          </a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. OPINIONES & CONFIANZA LOCAL (GOOGLE REVIEWS & UBICACIÓN) -->
+<section class="py-20 lg:py-28 bg-dark-800 border-t border-white/5 relative" id="opiniones">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="reveal text-center max-w-3xl mx-auto mb-16">
+<div class="inline-flex items-center gap-1.5 text-gold-400 mb-2">
+<i class="fa-solid fa-star text-sm"></i>
+<i class="fa-solid fa-star text-sm"></i>
+<i class="fa-solid fa-star text-sm"></i>
+<i class="fa-solid fa-star text-sm"></i>
+<i class="fa-solid fa-star text-sm"></i>
+<span class="text-xs text-gray-300 font-bold ml-2">4.9 / 5 en Google Reviews</span>
+</div>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Lo que dicen nuestros clientes en Archena
+        </h2>
+<p class="text-gray-400 text-sm">
+          La confianza de nuestros vecinos es nuestro mayor orgullo. Trato cercano, profesional y puntual.
+        </p>
+</div>
+<!-- Testimonials Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+<!-- Review 1 -->
+<div class="reveal spotlight-card bg-dark-900 p-6 sm:p-8 rounded-2xl border border-white/10 relative shadow-lg" style="--delay: 0ms;">
+<i class="fa-solid fa-quote-right absolute top-6 right-6 text-2xl text-gold-500/20"></i>
+<div class="flex items-center gap-1 text-gold-400 text-xs mb-4">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed mb-6">
+            "Fui para hacerme unas mechas balayage y no pude quedar más contenta. El color quedó natural, brillante y sin estropear nada el pelo. El trato en el salón es inmejorable."
+          </p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-sm">
+              MG
+            </div>
+<div>
+<p class="text-sm font-bold text-white">María Gómez</p>
+<p class="text-xs text-gray-500">Cliente habitual en Archena</p>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="reveal spotlight-card bg-dark-900 p-6 sm:p-8 rounded-2xl border border-gold-500/30 relative shadow-lg" style="--delay: 120ms;">
+<i class="fa-solid fa-quote-right absolute top-6 right-6 text-2xl text-gold-500/20"></i>
+<div class="flex items-center gap-1 text-gold-400 text-xs mb-4">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed mb-6">
+            "Excelente peluquería para caballeros también. Muy buen corte de pelo degradado y arreglo de barba perfecto. Da gusto encontrar profesionales tan atentos y puntuales."
+          </p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-sm">
+              AL
+            </div>
+<div>
+<p class="text-sm font-bold text-white">Antonio López</p>
+<p class="text-xs text-gray-500">Reseña de Google</p>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="reveal spotlight-card bg-dark-900 p-6 sm:p-8 rounded-2xl border border-white/10 relative shadow-lg" style="--delay: 240ms;">
+<i class="fa-solid fa-quote-right absolute top-6 right-6 text-2xl text-gold-500/20"></i>
+<div class="flex items-center gap-1 text-gold-400 text-xs mb-4">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed mb-6">
+            "Me prepararon para la boda de mi hermana con un recogido impresionante que duró intacto toda la noche. Además, los precios son muy justos para la gran calidad que ofrecen."
+          </p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-sm">
+              CR
+            </div>
+<div>
+<p class="text-sm font-bold text-white">Carmen Rodríguez</p>
+<p class="text-xs text-gray-500">Invitada de boda</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Google Maps CTA & Location Card -->
+<div class="reveal rounded-2xl border border-white/10 bg-dark-900 p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-gold-500/30 transition-colors" style="--delay: 150ms;">
+<div class="flex items-center gap-4 text-center md:text-left">
+<div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-gold-400 flex-shrink-0">
+<i class="fa-brands fa-google"></i>
+</div>
+<div>
+<h4 class="text-lg font-bold text-white">¿Eres cliente de Glamour?</h4>
+<p class="text-xs sm:text-sm text-gray-400">Tu opinión nos ayuda a seguir creciendo como peluquería de referencia en la comarca.</p>
+</div>
+</div>
+<a class="w-full md:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 hover:border-gold-500/50 text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 group" href="https://maps.google.com/?q=Av.+Mario+Spreáfico,+25,+Archena,+Murcia" target="_blank">
+<span>Dejar reseña en Google</span>
+<i class="fa-solid fa-arrow-up-right-from-square text-xs text-gold-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+</a>
+</div>
+</div>
+</section>
+
+<!-- 6. CONTACTO, HORARIOS & UBICACIÓN -->
+<section class="py-20 lg:py-28 bg-dark-900 relative" id="contacto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Contact Details & Schedule -->
+<div class="lg:col-span-6 space-y-8 reveal-left">
+<div>
+<span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-2">Visítanos o Llámanos</span>
+<h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Estamos en Archena para cuidar de ti
+            </h2>
+<p class="text-gray-400 text-sm leading-relaxed">
+              Reserva con antelación para garantizar tu hueco prioritario, especialmente en fines de semana o vísperas de festivos.
+            </p>
+</div>
+<!-- Contact Cards -->
+<div class="space-y-4">
+<!-- Address -->
+<div class="spotlight-card flex items-start gap-4 p-5 rounded-2xl bg-dark-800 border border-white/5 hover:border-gold-500/30">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl flex-shrink-0">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+<div>
+<p class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Dirección Física</p>
+<p class="text-base font-bold text-white mt-0.5">Av. Mario Spreáfico, 25</p>
+<p class="text-xs text-gray-400">30600 Archena, Murcia (España)</p>
+</div>
+</div>
+<!-- Phone -->
+<div class="spotlight-card flex items-start gap-4 p-5 rounded-2xl bg-dark-800 border border-white/5 hover:border-gold-500/30">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl flex-shrink-0">
+<i class="fa-solid fa-phone"></i>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<div>
+<p class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Citas &amp; Consultas</p>
+<a class="text-base font-bold text-white hover:text-gold-400 transition mt-0.5 block" href="tel:+34968688199">
+                    +34 968 688 199
+                  </a>
+<p class="text-xs text-gray-400">Llamada directa al salón</p>
+</div>
+<a class="btn-shine px-3.5 py-2 bg-gold-500 hover:bg-gold-400 text-black text-xs font-bold rounded-lg transition" href="tel:+34968688199">
+                  Llamar
+                </a>
+</div>
+</div>
+<!-- Schedule -->
+<div class="spotlight-card flex items-start gap-4 p-5 rounded-2xl bg-dark-800 border border-white/5">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl flex-shrink-0">
+<i class="fa-regular fa-clock"></i>
+</div>
+<div class="w-full">
+<p class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Horario de Apertura</p>
+<div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+<div>
+<span class="text-white font-medium">Martes a Viernes:</span>
+<p class="text-gray-400">09:30 - 13:30 | 16:30 - 20:00</p>
+</div>
+<div>
+<span class="text-white font-medium">Sábados:</span>
+<p class="text-gray-400">09:00 - 14:00 (Ininterrumpido)</p>
+</div>
+<div class="col-span-2 pt-2 border-t border-white/5 text-gray-500">
+                    Domingos y Lunes: Cerrado por descanso
+                  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Interactive Booking Form / Map Box -->
+<div class="lg:col-span-6 bg-dark-800 p-8 rounded-3xl border border-white/10 shadow-2xl relative reveal-right" style="--delay: 150ms;">
+<div class="mb-6">
+<h3 class="font-serif text-2xl font-bold text-white">Solicita tu Reserva Online</h3>
+<p class="text-xs text-gray-400 mt-1">Rellena el formulario y te confirmaremos la hora de inmediato por teléfono o WhatsApp.</p>
+</div>
+<form class="space-y-4" onsubmit="handleDirectBooking(event)">
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Nombre Completo</label>
+<input class="w-full px-4 py-3 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm transition-all" id="form-name" placeholder="Ej. Laura Martínez" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Teléfono Móvil (WhatsApp)</label>
+<input class="w-full px-4 py-3 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm transition-all" id="form-phone" placeholder="Ej. 600 000 000" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Servicio Deseado</label>
+<select class="w-full px-4 py-3 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm transition-all" id="form-service">
+<option value="Corte de Pelo">Corte de Pelo (Unisex)</option>
+<option value="Color y Mechas / Balayage">Color y Mechas / Balayage</option>
+<option value="Tratamiento Capilar">Tratamiento Capilar</option>
+<option value="Peinado Evento / Novia">Peinado Evento / Novia</option>
+<option value="Otro / Asesoramiento">Otro / Asesoramiento</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Fecha Preferida</label>
+<input class="w-full px-4 py-3 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm transition-all" id="form-date" required="" type="date"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Franja Horaria</label>
+<select class="w-full px-4 py-3 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm transition-all" id="form-time">
+<option value="Mañana (10:00 - 13:00)">Mañana (10:00 - 13:00)</option>
+<option value="Tarde (16:30 - 19:30)">Tarde (16:30 - 19:30)</option>
+<option value="Cualquier hora disponible">Cualquier hora disponible</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-300 mb-1">Notas adicionales (opcional)</label>
+<textarea class="w-full px-4 py-2.5 rounded-xl bg-dark-900 border border-white/10 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/40 focus:outline-none text-white text-sm resize-none transition-all" id="form-notes" placeholder="¿Tienes el cabello muy largo, deseas un cambio radical o alguna preferencia especial?" rows="2"></textarea>
+</div>
+<button class="btn-shine w-full py-4 bg-gradient-to-r from-gold-500 via-gold-400 to-amber-600 text-black font-bold text-sm tracking-wider uppercase rounded-xl transition-all duration-300 hover:brightness-110 transform hover:-translate-y-0.5 shadow-lg shadow-gold-500/20 flex items-center justify-center gap-2" type="submit">
+<i class="fa-brands fa-whatsapp text-lg"></i>
+<span>Enviar Petición de Cita</span>
+</button>
+</form>
+<p class="hidden mt-4 text-xs text-center text-green-400 font-semibold" id="form-feedback"></p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 7. FOOTER -->
+<footer class="bg-dark-900 border-t border-white/10 py-12 text-sm text-gray-400">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<!-- Col 1: Brand Info -->
+<div class="md:col-span-2">
+<div class="flex items-center gap-2 mb-3">
+<span class="font-serif text-2xl font-bold tracking-wider text-white">GLAMOUR</span>
+<span class="h-2 w-2 rounded-full bg-gold-500"></span>
+</div>
+<p class="text-xs uppercase tracking-widest text-gold-400 mb-4 font-semibold">Peluquería Unisex en Archena</p>
+<p class="text-xs text-gray-400 max-w-sm leading-relaxed mb-6">
+            Comprometidos con tu imagen personal y el bienestar de tu cabello. Calidad profesional, cercanía y asesoramiento a medida.
+          </p>
+<!-- Social Icons -->
+<div class="flex items-center gap-3">
+<a class="w-9 h-9 rounded-full bg-dark-800 border border-white/10 hover:border-gold-500 text-gray-300 hover:text-gold-400 hover:-translate-y-1 flex items-center justify-center transition-all duration-300" href="https://instagram.com" target="_blank">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a class="w-9 h-9 rounded-full bg-dark-800 border border-white/10 hover:border-gold-500 text-gray-300 hover:text-gold-400 hover:-translate-y-1 flex items-center justify-center transition-all duration-300" href="https://facebook.com" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+<a class="w-9 h-9 rounded-full bg-dark-800 border border-white/10 hover:border-gold-500 text-gray-300 hover:text-gold-400 hover:-translate-y-1 flex items-center justify-center transition-all duration-300" href="https://wa.me/34968688199" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+</div>
+</div>
+<!-- Col 2: Navigation Links -->
+<div>
+<h5 class="text-xs uppercase tracking-wider text-white font-bold mb-4">Secciones</h5>
+<ul class="space-y-2.5 text-xs">
+<li><a class="hover:text-gold-400 transition" href="#inicio">Inicio</a></li>
+<li><a class="hover:text-gold-400 transition" href="#servicios">Cortes &amp; Color</a></li>
+<li><a class="hover:text-gold-400 transition" href="#servicios">Tratamientos &amp; Bodas</a></li>
+<li><a class="hover:text-gold-400 transition" href="#galeria">Galería de Trabajos</a></li>
+<li><a class="hover:text-gold-400 transition" href="#opiniones">Opiniones de Clientes</a></li>
+<li><a class="hover:text-gold-400 transition" href="#contacto">Dónde Estamos</a></li>
+</ul>
+</div>
+<!-- Col 3: Direct info -->
+<div>
+<h5 class="text-xs uppercase tracking-wider text-white font-bold mb-4">Contacto Directo</h5>
+<p class="text-xs text-gray-300 mb-2">
+<strong class="text-white">Dirección:</strong><br/>
+            Av. Mario Spreáfico, 25<br/>30600 Archena, Murcia
+          </p>
+<p class="text-xs text-gray-300 mb-4">
+<strong class="text-white">Teléfono:</strong><br/>
+<a class="text-gold-400 font-bold hover:underline" href="tel:+34968688199">+34 968 688 199</a>
+</p>
+<button class="text-xs text-gold-300 underline underline-offset-4 hover:text-white transition" onclick="toggleBookingModal(true)">
+            Reservar por el asistente web →
+          </button>
+</div>
+</div>
+<!-- Copyright & Legal -->
+<div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+<p>© <span id="current-year"></span> Glamour Peluquería Unisex. Todos los derechos reservados.</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-gray-400" href="#">Aviso Legal</a>
+<a class="hover:text-gray-400" href="#">Política de Privacidad</a>
+<a class="hover:text-gray-400" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- FLOATING CTA BUTTONS (MOBILE FIRST & CONVERSION) -->
+<div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+<!-- Click to call float (Visible on mobile) -->
+<a class="md:hidden w-12 h-12 rounded-full bg-dark-800 border border-gold-500/50 text-gold-400 flex items-center justify-center text-lg shadow-2xl shadow-black/80 hover:scale-110 transition active:scale-95" href="tel:+34968688199" title="Llamar a Peluquería Glamour">
+<i class="fa-solid fa-phone"></i>
+</a>
+<!-- WhatsApp float with pulse effect -->
+<a class="relative group w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform active:scale-95" href="https://wa.me/34968688199?text=Hola,%20quisiera%20pedir%20cita%20en%20Glamour%20Peluquería" target="_blank" title="Escribir por WhatsApp">
+<span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-white"></span>
+</span>
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+</div>
+
+<!-- BOOKING MODAL POPUP -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" id="booking-modal" onclick="if(event.target === this) toggleBookingModal(false)">
+<div class="bg-dark-800 border border-gold-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative" id="booking-modal-panel">
+<!-- Close Button -->
+<button class="absolute top-5 right-5 text-gray-400 hover:text-white hover:rotate-90 transition-all duration-300 text-xl" onclick="toggleBookingModal(false)">
+<i class="fa-solid fa-xmark"></i>
+</button>
+<div class="text-center mb-6">
+<div class="w-12 h-12 mx-auto rounded-full bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-3">
+<i class="fa-regular fa-calendar-check"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white">Reserva tu Cita en Glamour</h3>
+<p class="text-xs text-gray-400 mt-1">Elige cómo prefieres confirmar tu cita en el salón de Archena</p>
+</div>
+<div class="space-y-4">
+<!-- Fast Option: WhatsApp Direct -->
+<a class="w-full p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/40 hover:bg-[#25D366]/20 transition flex items-center gap-4 group" href="https://wa.me/34968688199?text=Hola%20Glamour%20Peluquería,%20me%20gustaría%20reservar%20cita%20para%20un%20servicio" target="_blank">
+<div class="w-11 h-11 rounded-xl bg-[#25D366] text-white flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+<i class="fa-brands fa-whatsapp"></i>
+</div>
+<div class="text-left flex-1">
+<p class="text-sm font-bold text-white group-hover:text-green-300">Reserva rápida por WhatsApp</p>
+<p class="text-xs text-gray-400">Respuesta ágil y confirmación de hueco</p>
+</div>
+<i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:translate-x-1 transition-transform"></i>
+</a>
+<!-- Fast Option: Phone Call -->
+<a class="w-full p-4 rounded-2xl bg-gold-500/10 border border-gold-500/40 hover:bg-gold-500/20 transition flex items-center gap-4 group" href="tel:+34968688199">
+<div class="w-11 h-11 rounded-xl bg-gold-500 text-black flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-phone"></i>
+</div>
+<div class="text-left flex-1">
+<p class="text-sm font-bold text-white group-hover:text-gold-300">Llamar al Salón Directamente</p>
+<p class="text-xs text-gray-400">Atención inmediata: +34 968 688 199</p>
+</div>
+<i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:translate-x-1 transition-transform"></i>
+</a>
+<div class="pt-2 text-center">
+<p class="text-[11px] text-gray-400">
+<i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> Av. Mario Spreáfico, 25, Archena (Murcia)
+          </p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- JAVASCRIPT & ANIMATION ENGINE -->
+<script>
+    // Dynamic Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Scroll Reveal Observer (60fps GPU Staggered Reveals)
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Animated Number Counters for Trust Metrics
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.counter);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1600;
+        const startTime = performance.now();
+
+        function updateCounter(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          // Ease out quart
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = (target * eased).toFixed(decimals);
+          el.textContent = `${prefix}${current}${suffix}`;
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+          }
+        }
+        requestAnimationFrame(updateCounter);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Interactive Spotlight Effect on Cards
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // Scroll Progress Bar & Dynamic Header Shrink
+    const scrollProgress = document.getElementById('scroll-progress');
+    const mainHeader = document.getElementById('main-header');
+    const headerContainer = document.getElementById('header-container');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = `${progress}%`;
+
+      if (scrollTop > 40) {
+        mainHeader.classList.add('shadow-2xl', 'border-gold-500/25');
+        headerContainer.classList.replace('h-20', 'h-16');
+      } else {
+        mainHeader.classList.remove('shadow-2xl', 'border-gold-500/25');
+        headerContainer.classList.replace('h-16', 'h-20');
+      }
+    }, { passive: true });
+
+    // Mobile Navigation Toggle
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        menu.classList.add('hidden');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    }
+
+    // Smooth Booking Modal Toggle
+    function toggleBookingModal(show) {
+      const modal = document.getElementById('booking-modal');
+      if (show) {
+        modal.classList.add('modal-open');
+      } else {
+        modal.classList.remove('modal-open');
+      }
+    }
+
+    // Open Service Specific Booking Modal
+    function openServiceModal(serviceName) {
+      const serviceSelect = document.getElementById('form-service');
+      if (serviceSelect) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          if (serviceSelect.options[i].text.toLowerCase().includes(serviceName.toLowerCase())) {
+            serviceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      // Scroll smoothly to form
+      const contactSection = document.getElementById('contacto');
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Direct Form Submit Handled via WhatsApp API
+    function handleDirectBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const phone = document.getElementById('form-phone').value;
+      const service = document.getElementById('form-service').value;
+      const date = document.getElementById('form-date').value;
+      const time = document.getElementById('form-time').value;
+      const notes = document.getElementById('form-notes').value;
+
+      const message = `¡Hola Glamour Peluquería! Quisiera solicitar una cita:%0A- *Nombre:* ${encodeURIComponent(name)}%0A- *Teléfono:* ${encodeURIComponent(phone)}%0A- *Servicio:* ${encodeURIComponent(service)}%0A- *Fecha preferida:* ${encodeURIComponent(date)}%0A- *Horario:* ${encodeURIComponent(time)}${notes ? `%0A- *Notas:* ${encodeURIComponent(notes)}` : ''}`;
+
+      const whatsappUrl = `https://wa.me/34968688199?text=${message}`;
+      
+      const feedback = document.getElementById('form-feedback');
+      feedback.textContent = "Abriendo WhatsApp para confirmar tu reserva...";
+      feedback.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
